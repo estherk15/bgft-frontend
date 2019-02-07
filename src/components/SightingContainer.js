@@ -13,7 +13,7 @@ class SightingsContainer extends React.Component {
     return (
       <div>
         <div>
-          <form onSubmit=>
+          <form onSubmit={'add some function'}>
             <input type="text" placeholder="Enter a Location" />
             <input type="text" placeholder="Enter a Description" />
             <input type="text" placeholder="Photo Url" />
@@ -30,3 +30,6 @@ class SightingsContainer extends React.Component {
 }
 
 export default SightingsContainer
+
+//add onSubmit handler
+//add onChange hanlder for each form field
