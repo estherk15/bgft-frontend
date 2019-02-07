@@ -10,8 +10,7 @@ class App extends Component {
 
   state = {
     userData: [],
-    sightings: []
-
+    sightings: [],
   }
 
   componentDidMount() {
