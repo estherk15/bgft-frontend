@@ -4,6 +4,7 @@ import './App.css';
 
 import NavBar from './components/NavBar'
 import SightingContainer from './components/SightingContainer'
+import Login from './components/Login'
 
 
 class App extends Component {
@@ -11,6 +12,26 @@ class App extends Component {
   state = {
     userData: [],
     sightings: [],
+    currentUser: null,
+  }
+
+  loginClick = (username) => {
+    fetch('http://localhost:3000//api/v1/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          currentUser: data
+        })
+      })
   }
 
   addSighting = (sighting) => {
@@ -29,11 +50,12 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state)
+    console.log(this.state)
     return (
       <div className="App">
         <NavBar />
         <h1>Big Foot Finder</h1>
+        <Login loginClick={this.loginClick} />
         <SightingContainer sightings={this.state.sightings} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
       </div>
     );
