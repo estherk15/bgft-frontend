@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.css';import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+  Switch
+} from "react-router-dom";
 
 import NavBar from './components/NavBar'
 import SightingContainer from './components/SightingContainer'
 import Login from './components/Login'
 
-
 class App extends Component {
-
   state = {
     userData: [],
     sightings: [],
@@ -50,14 +54,16 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state.currentUser)
     return (
-      <div className="App">
-        <NavBar />
-        <h1>Big Foot Finder</h1>
-        <Login loginClick={this.loginClick} />
-        <SightingContainer sightings={this.state.sightings} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
-      </div>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <h1>Big Foot Finder</h1>
+          <Route exact path="/login" render={()=><Login loginClick={this.loginClick} />} />
+          <SightingContainer sightings={this.state.sightings} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
+        </div>
+      </Router>
     );
   }
 }
