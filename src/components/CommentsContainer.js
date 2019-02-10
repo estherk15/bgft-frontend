@@ -9,6 +9,46 @@ class CommentsContainer extends React.Component {
     comments: [...this.props.comments].reverse()
   }
 
+  findCommentInReturn = (sightingAndUser) => {
+    return sightingAndUser.sighting.comments.find(function(comment){
+      return comment.id === sightingAndUser.id
+    })
+  }
+
+  commentsListEditor = (sightingAndUser) => {
+    const commentEdited = this.findCommentInReturn(sightingAndUser)
+    const editedCommentList = this.state.comments.map(comment => {
+      if(comment.id === commentEdited.id){
+        return commentEdited
+      } else {
+        return comment
+      }
+      this.setState({comments: editedCommentList})
+    
+    })
+
+  //  const editedList
+  }
+
+  // commentsListEditor = (editedCommentAndMore) => {
+  //
+  //
+  //
+  //   const commentsEdited = this.state.comments.map(comment => {
+  //     if(editedComment.id === comment.id){
+  //       console.log(editedComment)
+  //
+  //       return editedComment
+  //     } else {
+  //       return comment
+  //     }
+  //
+  //   })
+  //
+  //   this.setState({comments: commentsEdited})
+  //
+  // }
+
   addComment = (event) =>{
     event.preventDefault()
 
@@ -49,7 +89,7 @@ class CommentsContainer extends React.Component {
 
       </form>
 
-      {this.state.comments.map(comment => <Comments comment={comment}/>)}
+      {this.state.comments.map(comment => <Comments currentUser={this.props.currentUser} commentsListEditor={this.commentsListEditor} comment={comment}/>)}
       </div>
     )
   }
