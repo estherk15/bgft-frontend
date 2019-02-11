@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';import {
+import './App.css';
+import {
   BrowserRouter as Router,
   Route,
   Link,
@@ -68,25 +69,24 @@ class App extends Component {
       .then(sightings => this.setState({ sightings: sightings }));
   }
 
+  sightingContainer = props => <SightingContainer user={this.state.currentUser} sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
+  login = props => <Login user={this.state.currentUser} loginClick={this.loginClick} />
+
   render() {
     return (
       <Router>
         <div className="App">
           <NavBar />
-          <SightingContainer exact path="/sightings" sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}  currentUser={this.state.currentUser}/>
           <h1>Big Foot Finder</h1>
-
-          <Route render={()=> (this.state.currentUser ===null) ?
-            (<Login  exact path="/login" loginClick={this.loginClick} />)
-          :
-          (<Redirect to="/sightings"/>)
-
-          }
-          />
+          <Switch>
+            <Route path="/login" component={this.login}/>
+            <Route path="/sightings" component={this.sightingContainer}/>
+          </Switch>
         </div>
         </Router>
     );
+  }
 }
-}
+
 
 export default App;

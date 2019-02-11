@@ -1,5 +1,6 @@
 import React from 'react'
 import Sighting from './Sighting'
+import { BrowserRouter as Router, Redirect } from "react-router-dom"
 
 class SightingsContainer extends React.Component {
 
@@ -29,7 +30,7 @@ class SightingsContainer extends React.Component {
         location: this.state.location,
         description: this.state.description,
         photo: this.state.photo,
-        user_id: this.props.currentUser.id
+        user_id: this.state.userId
       })
     })
     .then(r => r.json())
@@ -38,21 +39,25 @@ class SightingsContainer extends React.Component {
 
 
   render() {
-    // console.log(this.state);
+    console.log(this.props);
 
     return (
-      <div>
+      <Router>
+        {this.props.user === null ? <Redirect to="/login" /> :
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" name="location" placeholder="Enter a Location" onChange={this.handleChange}/>
-            <input type="text" name="description" placeholder="Enter a Description" onChange={this.handleChange}/>
-            <input type="text" name="photo" placeholder="Photo Url" onChange={this.handleChange}/>
-            <input type="submit" value="Submit"/>
-          </form>
-        </div>
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <input type="text" name="location" placeholder="Enter a Location" onChange={this.handleChange}/>
+              <input type="text" name="description" placeholder="Enter a Description" onChange={this.handleChange}/>
+              <input type="text" name="photo" placeholder="Photo Url" onChange={this.handleChange}/>
+              <input type="number" name="userId" placeholder="User ID" onChange={this.handleChange}/>
+              <input type="submit" value="Submit"/>
+            </form>
+          </div>
 
-        {this.props.sightings.map(sighting => <Sighting key={sighting.id} sighting={sighting} currentUser={this.props.currentUser} editedSighting={this.props.editedSighting}/>)}
-      </div>
+          {this.props.sightings.map(sighting => <Sighting key={sighting.id} sighting={sighting}/>)}
+        </div> }
+      </Router>
 
     )
   }
