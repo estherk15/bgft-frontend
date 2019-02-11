@@ -45,6 +45,9 @@ class App extends Component {
   editedSighting = editedSight => {
     let newSightingList = this.state.sightings.map(sighting => {
       if(editedSight.id === sighting.id){
+        //debugger
+        editedSight.comments = editedSight.comments.reverse()
+        //debugger
         return editedSight
       } else {
         return sighting
@@ -65,14 +68,13 @@ class App extends Component {
   }
 
   render() {
-  
     return (
       <Router>
         <div className="App">
           <NavBar />
           <h1>Big Foot Finder</h1>
           <Route exact path="/login" render={()=><Login loginClick={this.loginClick} />} />
-          <SightingContainer sightings={this.state.sightings} handleSubmit={this.handleSubmit} addSighting={this.addSighting} editedSighting={this.editedSighting} currentUser={this.state.currentUser}/>
+          <SightingContainer sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}  currentUser={this.state.currentUser}/>
         </div>
       </Router>
     );

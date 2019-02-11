@@ -6,7 +6,7 @@ class CommentsContainer extends React.Component {
   state ={
     body: null,
     photo: null,
-    comments: [...this.props.comments].reverse()
+    // comments: [...this.props.comments].reverse()
   }
 
   findCommentInReturn = (sightingAndUser) => {
@@ -14,8 +14,6 @@ class CommentsContainer extends React.Component {
       return comment.id === sightingAndUser.id
     })
   }
-
-
 
 
   addComment = (event) =>{
@@ -35,10 +33,9 @@ class CommentsContainer extends React.Component {
       })
     })
     .then(r => r.json())
-    .then(newCommentsList => this.setState({comments: [...newCommentsList.sighting.comments].reverse()}))
-
-
+    .then((newCommentsList => {return this.props.editedSighting(newCommentsList.sighting)}))
   }
+//  this.setState({comments: newCommentsList.sighting.comments.reverse()})
 
   handleChange = (event) => {
     this.setState({
@@ -46,9 +43,15 @@ class CommentsContainer extends React.Component {
     })
   }
 
+  formatComments = () => {
+    return this.props.comments.map(comment => {
+      return <Comments key={comment.id} currentUser={this.props.currentUser} comment={comment} editedSighting={this.props.editedSighting} />
+    })
+  }
+
 
   render() {
-    console.log(this.state.comments)
+    console.log("re-render", this.state)
     return (
       <div>
       <form onSubmit={(event) => this.addComment(event)}>
@@ -58,7 +61,7 @@ class CommentsContainer extends React.Component {
 
       </form>
 
-      {this.state.comments.map(comment => <Comments currentUser={this.props.currentUser}  comment={comment} editedSighting={this.props.editedSighting}/>)}
+      {this.formatComments()}
       </div>
     )
   }
