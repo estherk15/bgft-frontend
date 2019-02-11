@@ -42,6 +42,17 @@ class App extends Component {
     this.setState({sightings: [sighting, ...this.state.sightings]})
   }
 
+  editedSighting = editedSight => {
+    let newSightingList = this.state.sightings.map(sighting => {
+      if(editedSight.id === sighting.id){
+        return editedSight
+      } else {
+        return sighting
+      }
+    })
+    this.setState({sightings: newSightingList})
+  }
+
   componentDidMount() {
     // fetch from local API bfgt-backend
     fetch('http://localhost:3000//api/v1/users')
@@ -54,14 +65,14 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.currentUser)
+  
     return (
       <Router>
         <div className="App">
           <NavBar />
           <h1>Big Foot Finder</h1>
           <Route exact path="/login" render={()=><Login loginClick={this.loginClick} />} />
-          <SightingContainer sightings={this.state.sightings} handleSubmit={this.handleSubmit} addSighting={this.addSighting} currentUser={this.state.currentUser}/>
+          <SightingContainer sightings={this.state.sightings} handleSubmit={this.handleSubmit} addSighting={this.addSighting} editedSighting={this.editedSighting} currentUser={this.state.currentUser}/>
         </div>
       </Router>
     );

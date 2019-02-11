@@ -51,7 +51,7 @@ class SightingsContainer extends React.Component {
           </form>
         </div>
 
-        {this.props.sightings.map(sighting => <Sighting key={sighting.id} sighting={sighting} currentUser={this.props.currentUser}/>)}
+        {this.props.sightings.map(sighting => <Sighting key={sighting.id} sighting={sighting} currentUser={this.props.currentUser} editedSighting={this.props.editedSighting}/>)}
       </div>
 
     )

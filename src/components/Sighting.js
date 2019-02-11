@@ -26,7 +26,7 @@ class Sighting extends React.Component {
         </div><br/>
         <button onClick={() => this.pageViewtoggle()}> bigger View </button>
         {this.state.commentsDisplay ?
-          <CommentsContainer comments={this.props.sighting.comments} sightingId={this.props.sighting.id} currentUser={this.props.currentUser}/>:
+          <CommentsContainer comments={this.props.sighting.comments} sightingId={this.props.sighting.id} editedSighting={this.props.editedSighting} currentUser={this.props.currentUser}/>:
         <div></div>}
       </div>
     )
