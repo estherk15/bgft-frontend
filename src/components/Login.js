@@ -10,7 +10,7 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+  
     return(
       <div>
         <input type="text" placeholder="Enter Username" onChange={event => this.loginChange(event)}/>
