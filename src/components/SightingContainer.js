@@ -39,7 +39,7 @@ class SightingsContainer extends React.Component {
 
 
   render() {
-    console.log(this.props);
+    console.log(this.props.currentUser);
 
     return (
       <Router>
@@ -55,7 +55,7 @@ class SightingsContainer extends React.Component {
             </form>
           </div>
 
-          {this.props.sightings.map(sighting => <Sighting key={sighting.id} sighting={sighting}/>)}
+          {this.props.sightings.map(sighting => <Sighting key={sighting.id} currentUser={this.props.currentUser} sighting={sighting}/>)}
         </div> }
       </Router>
 

@@ -14,7 +14,7 @@ class Login extends React.Component {
 
     return(
       <Router>
-        {this.props.user === null ?
+        {this.props.currentUser === null ?
         <div>
           <input type="text" placeholder="Enter Username" onChange={event => this.loginChange(event)}/>
           <button onClick={() => this.props.loginClick(this.state.enteredUsername)}>Submit</button>

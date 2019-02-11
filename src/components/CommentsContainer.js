@@ -51,7 +51,7 @@ class CommentsContainer extends React.Component {
 
 
   render() {
-    console.log("re-render", this.state)
+    console.log("comments container", this.props.currentUser)
     return (
       <div>
       <form onSubmit={(event) => this.addComment(event)}>
