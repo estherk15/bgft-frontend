@@ -38,7 +38,7 @@ class Comments extends React.Component {
 
 
   render() {
-  
+
     return (
       <div>
       {this.state.formLayout ?
@@ -50,6 +50,7 @@ class Comments extends React.Component {
       :
       <div>
         {this.state.body}
+        {console.log("---> currentUser is :", this.props.currentUser)}
         {(this.props.currentUser.id === this.props.comment.user.id) ?
        <div>
           <button onClick={() => this.setState({formLayout: true})}>Edit Your Comment</button>

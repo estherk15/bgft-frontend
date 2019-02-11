@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';import {
-  BrowserRouter as Router,
+import './App.css';
+import {
   Route,
   Link,
   NavLink,
-  Switch
+  Switch,
+  Redirect
 } from "react-router-dom";
 
 import NavBar from './components/NavBar'
@@ -31,11 +32,8 @@ class App extends Component {
       })
     })
       .then(response => response.json())
-      .then(data => {
-        this.setState({
-          currentUser: data
-        })
-      })
+      .then(data => this.setState({currentUser: data})
+      )
   }
 
   addSighting = (sighting) => {
@@ -67,18 +65,28 @@ class App extends Component {
       .then(sightings => this.setState({ sightings: sightings }));
   }
 
+  sightingContainer = props => <SightingContainer currentUser={this.state.currentUser} sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
+  login = props => <Login currentUser={this.state.currentUser} loginClick={this.loginClick} />
+
   render() {
+    console.log("In App. Props are :", this.state.currentUser)
     return (
-      <Router>
-        <div className="App">
-          <NavBar />
-          <h1>Big Foot Finder</h1>
-          <Route exact path="/login" render={()=><Login loginClick={this.loginClick} />} />
-          <SightingContainer sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}  currentUser={this.state.currentUser}/>
-        </div>
-      </Router>
+
+      <div className="App">
+        {(!this.state.currentUser && this.props.location.pathname !== '/login') && <Redirect to="/login" />}
+        {this.state.currentUser && this.props.location.pathname !== '/sightings' &&  <Redirect to="/sightings" />}
+        <NavBar />
+        <h1>Big Foot Finder</h1>
+        <Switch>
+          <Route path="/login" component={this.login}/>
+
+          <Route path="/sightings" component={this.sightingContainer}/>
+        </Switch>
+      </div>
+
     );
   }
 }
+
 
 export default App;

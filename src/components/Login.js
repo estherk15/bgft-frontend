@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter as Router, Redirect} from 'react-router-dom'
 
 class Login extends React.Component {
   state ={
@@ -10,14 +11,17 @@ class Login extends React.Component {
   }
 
   render() {
-  
-    return(
-      <div>
-        <input type="text" placeholder="Enter Username" onChange={event => this.loginChange(event)}/>
-        <button onClick={() => this.props.loginClick(this.state.enteredUsername)}>Submit</button>
-        <hr/>
 
-      </div>
+    return(
+      <Router>
+        {this.props.currentUser === null ?
+        <div>
+          <input type="text" placeholder="Enter Username" onChange={event => this.loginChange(event)}/>
+          <button onClick={() => this.props.loginClick(this.state.enteredUsername)}>Submit</button>
+          <hr/>
+        </div> : <Redirect to="/sightings" />
+        }
+      </Router>
     )
   }
 }
