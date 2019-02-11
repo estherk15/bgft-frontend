@@ -5,7 +5,8 @@ import './App.css';import {
   Route,
   Link,
   NavLink,
-  Switch
+  Switch,
+  Redirect
 } from "react-router-dom";
 
 import NavBar from './components/NavBar'
@@ -72,13 +73,20 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
+          <SightingContainer exact path="/sightings" sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}  currentUser={this.state.currentUser}/>
           <h1>Big Foot Finder</h1>
-          <Route exact path="/login" render={()=><Login loginClick={this.loginClick} />} />
-          <SightingContainer sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}  currentUser={this.state.currentUser}/>
+
+          <Route render={()=> (this.state.currentUser ===null) ?
+            (<Login  exact path="/login" loginClick={this.loginClick} />)
+          :
+          (<Redirect to="/sightings"/>)
+
+          }
+          />
         </div>
-      </Router>
+        </Router>
     );
-  }
+}
 }
 
 export default App;
