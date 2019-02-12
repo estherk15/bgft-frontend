@@ -12,7 +12,7 @@ class Sighting extends React.Component {
   }
 
   render() {
-    console.log('sighting', this.props.currentUser)
+    // console.log('sighting', this.props.currentUser)
     return (
 
       <div type='card'>

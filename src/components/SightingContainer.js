@@ -7,18 +7,22 @@ class SightingsContainer extends React.Component {
   state = {
     location: '',
     description: '',
+    lat: '',
+    lng: '',
     photo: '',
     userId: '',
   }
 
-  handleChange = (event) => {
+
+  handleChange = (event) => { //for the sightings form
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = (event) => { //submit the sighings form, post new information
     event.preventDefault()
+
 
     fetch('http://localhost:3000//api/v1/sightings', {
       method: 'POST',
@@ -30,7 +34,9 @@ class SightingsContainer extends React.Component {
         location: this.state.location,
         description: this.state.description,
         photo: this.state.photo,
-        user_id: this.state.userId
+        user_id: this.state.userId,
+        lat: this.props.lat,
+        lng: this.props.lng,
       })
     })
     .then(r => r.json())
@@ -39,7 +45,7 @@ class SightingsContainer extends React.Component {
 
 
   render() {
-    console.log(this.props.currentUser);
+    console.log(this.props.currentUser)
 
     return (
       <Router>
@@ -47,15 +53,16 @@ class SightingsContainer extends React.Component {
         <div>
           <div>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" name="location" placeholder="Enter a Location" onChange={this.handleChange}/>
+              <input type="text" name="location" placeholder="Enter a Location" onChange={this.handleChange} />
+              <input type="number" name="lat"  value={this.props.lat}/>
+              <input type="number" name="lng" value={this.props.lng}/>
               <input type="text" name="description" placeholder="Enter a Description" onChange={this.handleChange}/>
               <input type="text" name="photo" placeholder="Photo Url" onChange={this.handleChange}/>
-              <input type="number" name="userId" placeholder="User ID" onChange={this.handleChange}/>
               <input type="submit" value="Submit"/>
             </form>
           </div>
 
-          {this.props.sightings.map(sighting => <Sighting key={sighting.id} currentUser={this.props.currentUser} sighting={sighting}/>)}
+          {this.props.sightings.map(sighting => <Sighting key={sighting.id} currentUser={this.props.currentUser} sighting={sighting} editedSighting={this.props.editedSighting}/>)}
         </div> }
       </Router>
 
