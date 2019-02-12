@@ -6,11 +6,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #d48a1c;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+input {
+  border-radius: 5px;
+  margin: 0.5vmin;
+}
+
+.form-card {
+  background-color: #eec76b;
+  padding-top: 3vmin;
+  padding-bottom: 3vmin;
+  padding-left: 2vmin;
+  margin-right: 5vmin;
+  margin-left: 5vmin;
+  border-radius: 25px;
 }
 
 .display-block {
@@ -20,6 +36,8 @@ code {
 .display-none {
   display: none;
 }
+
+
 
 .modal {
   position: fixed;
@@ -40,10 +58,21 @@ code {
   transform: translate(-50%,-50%);
 }
 
+.map-background {
+    z-index: -1;
+}
+
+.map {
+  border-radius: 15px;
+}
+
+
+
 .newuser-form {
   border: 1vmin blue;
   padding: 10vmin;
   margin: 20vmin;
   border-radius: 25px;
   background-color: white;
+  z-index: 4;
 }

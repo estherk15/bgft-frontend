@@ -29,6 +29,7 @@ class CreateUserModal extends React.Component {
     })
     .then(r => r.json())
     .then(newUser => this.props.setCurrentUser(newUser))
+    this.props.setMapBackground()
   }
 
 
