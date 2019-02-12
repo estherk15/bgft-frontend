@@ -20,8 +20,6 @@ class MapComponent extends React.Component {
       iconSize: [30, 30], // size of the icon
     });
 
-
-
     return (
 
         <Map className={this.props.mapBackground ? "map map-background" : "map" } center={currentPosition} zoom={this.props.zoom} onClick={this.props.latLngGetter}>

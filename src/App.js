@@ -10,7 +10,7 @@ import {
   Redirect
 } from "react-router-dom";
 
-import NavBar from './components/NavBar'
+// import NavBar from './components/NavBar'
 import SightingContainer from './components/SightingContainer'
 import Login from './components/Login'
 import MapComponent from './components/MapComponent'
@@ -23,7 +23,8 @@ class App extends Component {
     lat: 39.26061403505392,
     lng: -97.3828125,
     zoom: 3,
-    mapBackground: false
+    mapBackground: false,
+    selectedSightingId: '',
   }
 
   setMapBackground = () => {
@@ -72,11 +73,15 @@ class App extends Component {
     const lat = e.latlng.lat
     const lng = e.latlng.lng
 
-    this.setState({lat, lng})
+    this.setState({ lat, lng })
   }
 
-  sightingClick = (sightId) => { //this should open up modal, sightId is taken from MapComponent
-    console.log(sightId)
+  sightingClick = (sightingId) => { //this should open up modal, sightId is taken from MapComponent, onclick, this will setState to the sightId
+    this.setState({ selectedSightingId: sightingId })
+  }
+
+  renderSighting = () => {
+    return this.state.sightings.find(sighting => sighting.id === this.state.selectedSightingId)
   }
 
   componentDidMount() {
@@ -93,12 +98,15 @@ class App extends Component {
   sightingContainer = props =>
     <SightingContainer
       currentUser={this.state.currentUser}
-      sightings={this.state.sightings}
+
       editedSighting={this.editedSighting}
       handleSubmit={this.handleSubmit}
       addSighting={this.addSighting}
       lat={this.state.lat}
-      lng={this.state.lng}/>
+      lng={this.state.lng}
+      sighting={this.renderSighting()}
+      setMapBackground={this.setMapBackground}
+      />
   login = props =>
     <Login
       currentUser={this.state.currentUser}
@@ -107,13 +115,12 @@ class App extends Component {
       setMapBackground={this.setMapBackground} />
 
   render() {
-    console.log(this.state.sightings)
+
     return (
 
       <div className="App">
         {(!this.state.currentUser && this.props.location.pathname !== '/login') && <Redirect to="/login" />}
         {this.state.currentUser && this.props.location.pathname !== '/sightings' &&  <Redirect to="/sightings" />}
-        <NavBar />
         <h1>Big Foot Finder</h1>
         <Switch>
           <Route path="/login" component={this.login}/>
@@ -136,3 +143,4 @@ class App extends Component {
 
 
 export default App;
+// sightings={this.state.sightings} (taken from Sightings Container)

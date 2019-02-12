@@ -14,9 +14,9 @@ class Sighting extends React.Component {
   render() {
     // console.log('sighting', this.props.currentUser)
     return (
-
-      <div type='card'>
-        <div>
+                              //ternary operator that if selectedSighting != '' className is below and run setMapBackground
+      <div type='card' className="modal display-block">
+        <div className="newuser-form card">
           <div>
             sighted at: {this.props.sighting.location}
           </div>
