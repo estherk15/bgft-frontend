@@ -85,7 +85,7 @@ class App extends Component {
   login = props => <Login currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} loginClick={this.loginClick} />
 
   render() {
-    console.log(this.state.sightings)
+    console.log(this.state.currentUser)
     return (
 
       <div className="App">

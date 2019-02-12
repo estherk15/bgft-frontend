@@ -23,6 +23,7 @@ class SightingsContainer extends React.Component {
   handleSubmit = (event) => { //submit the sighings form, post new information
     event.preventDefault()
 
+
     fetch('http://localhost:3000//api/v1/sightings', {
       method: 'POST',
       headers: {
@@ -44,7 +45,7 @@ class SightingsContainer extends React.Component {
 
 
   render() {
-    console.log(this.props.lat)
+    console.log(this.props.currentUser)
 
     return (
       <Router>
@@ -57,12 +58,11 @@ class SightingsContainer extends React.Component {
               <input type="number" name="lng" value={this.props.lng}/>
               <input type="text" name="description" placeholder="Enter a Description" onChange={this.handleChange}/>
               <input type="text" name="photo" placeholder="Photo Url" onChange={this.handleChange}/>
-              <input type="number" name="userId" placeholder="User ID" onChange={this.handleChange}/>
               <input type="submit" value="Submit"/>
             </form>
           </div>
 
-          {this.props.sightings.map(sighting => <Sighting key={sighting.id} currentUser={this.props.currentUser} sighting={sighting}/>)}
+          {this.props.sightings.map(sighting => <Sighting key={sighting.id} currentUser={this.props.currentUser} sighting={sighting} editedSighting={this.props.editedSighting}/>)}
         </div> }
       </Router>
 
