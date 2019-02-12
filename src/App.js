@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+// import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import {
   Route,
-  Link,
-  NavLink,
+  // Link,
+  // NavLink,
   Switch,
   Redirect
 } from "react-router-dom";
@@ -12,12 +13,15 @@ import {
 import NavBar from './components/NavBar'
 import SightingContainer from './components/SightingContainer'
 import Login from './components/Login'
+import MapComponent from './components/MapComponent'
 
 class App extends Component {
   state = {
     userData: [],
     sightings: [],
     currentUser: null,
+    lat: 51.505,
+    lng: -0.09
   }
 
   loginClick = (username) => {
@@ -58,18 +62,18 @@ class App extends Component {
     // fetch from local API bfgt-backend
     fetch('http://localhost:3000//api/v1/users')
       .then(response => response.json())
-      .then(userData => this.setState({ userData: userData }))
+      .then(userData => this.setState({ userData }))
 
     fetch('http://localhost:3000//api/v1/sightings')
       .then(response => response.json())
-      .then(sightings => this.setState({ sightings: sightings }));
+      .then(sightings => this.setState({ sightings }));
   }
 
   sightingContainer = props => <SightingContainer currentUser={this.state.currentUser} sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
   login = props => <Login currentUser={this.state.currentUser} loginClick={this.loginClick} />
 
   render() {
-    console.log("In App. Props are :", this.state.currentUser)
+    // console.log("In App. Props are :", this.state.currentUser)
     return (
 
       <div className="App">
@@ -77,13 +81,12 @@ class App extends Component {
         {this.state.currentUser && this.props.location.pathname !== '/sightings' &&  <Redirect to="/sightings" />}
         <NavBar />
         <h1>Big Foot Finder</h1>
+        <MapComponent lat={this.state.lat} lng={this.state.lng}/>
         <Switch>
           <Route path="/login" component={this.login}/>
-
           <Route path="/sightings" component={this.sightingContainer}/>
         </Switch>
       </div>
-
     );
   }
 }
