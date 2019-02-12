@@ -30,8 +30,6 @@ class App extends Component {
     this.setState({mapBackground: !this.state.mapBackground})
   }
 
-
-
   loginClick = (username) => {
     fetch('http://localhost:3000//api/v1/login', {
       method: 'POST',
@@ -105,7 +103,8 @@ class App extends Component {
     <Login
       currentUser={this.state.currentUser}
       setCurrentUser={this.setCurrentUser}
-      loginClick={this.loginClick} />
+      loginClick={this.loginClick}
+      setMapBackground={this.setMapBackground} />
 
   render() {
     console.log(this.state.sightings)
@@ -127,7 +126,8 @@ class App extends Component {
           zoom={this.state.zoom}
           latLngGetter={this.latLngGetter}
           sightings={this.state.sightings}
-          sightingClick={this.sightingClick}/>
+          sightingClick={this.sightingClick}
+          mapBackground={this.state.mapBackground}/>
 
       </div>
     );

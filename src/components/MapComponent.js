@@ -24,9 +24,7 @@ class MapComponent extends React.Component {
 
     return (
 
-
-        <Map className={this.props.mapBackground ? "map map-background" : "map"} center={currentPosition} zoom={this.props.zoom} onClick={this.props.latLngGetter}>
-
+        <Map className={this.props.mapBackground ? "map map-background" : "map" } center={currentPosition} zoom={this.props.zoom} onClick={this.props.latLngGetter}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
