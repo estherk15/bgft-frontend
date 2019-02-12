@@ -51,7 +51,7 @@ class SightingsContainer extends React.Component {
       <Router>
         {this.props.user === null ? <Redirect to="/login" /> :
         <div>
-          <div>
+          <div className="form-card">
             <form onSubmit={this.handleSubmit}>
               <input type="text" name="location" placeholder="Enter a Location" onChange={this.handleChange} />
               <input type="number" name="lat"  value={this.props.lat}/>

@@ -22,8 +22,15 @@ class App extends Component {
     currentUser: null,
     lat: 39.26061403505392,
     lng: -97.3828125,
-    zoom: 3
+    zoom: 3,
+    mapBackground: false
   }
+
+  setMapBackground = () => {
+    this.setState({mapBackground: !this.state.mapBackground})
+  }
+
+
 
   loginClick = (username) => {
     fetch('http://localhost:3000//api/v1/login', {
@@ -113,6 +120,7 @@ class App extends Component {
           <Route path="/login" component={this.login}/>
           <Route path="/sightings" component={this.sightingContainer}/>
         </Switch>
+
         <MapComponent
           lat={this.state.lat}
           lng={this.state.lng}
@@ -120,6 +128,7 @@ class App extends Component {
           latLngGetter={this.latLngGetter}
           sightings={this.state.sightings}
           sightingClick={this.sightingClick}/>
+
       </div>
     );
   }
