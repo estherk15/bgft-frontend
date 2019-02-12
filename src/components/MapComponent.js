@@ -6,11 +6,10 @@ class MapComponent extends React.Component {
 
   render() {
     const position = [this.props.lat, this.props.lng]
-    console.log(position);
 
     return (
 
-        <Map className="map" center={position} zoom={13}>
+        <Map className="map" center={position} zoom={this.props.zoom} onClick={this.props.latLngGetter}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -20,8 +20,9 @@ class App extends Component {
     userData: [],
     sightings: [],
     currentUser: null,
-    lat: 51.505,
-    lng: -0.09
+    lat: 40.7075,
+    lng: -74.0113,
+    zoom: 13
   }
 
   loginClick = (username) => {
@@ -58,6 +59,13 @@ class App extends Component {
     this.setState({sightings: newSightingList})
   }
 
+  latLngGetter = (e) => {//e.latlng grabs the lat and long of where you click mouse. Sets state to clicked lat/lng
+    const lat = e.latlng.lat
+    const lng = e.latlng.lng
+
+    this.setState({lat, lng})
+  }
+
   componentDidMount() {
     // fetch from local API bfgt-backend
     fetch('http://localhost:3000//api/v1/users')
@@ -69,11 +77,20 @@ class App extends Component {
       .then(sightings => this.setState({ sightings }));
   }
 
-  sightingContainer = props => <SightingContainer currentUser={this.state.currentUser} sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
-  login = props => <Login currentUser={this.state.currentUser} loginClick={this.loginClick} />
+  sightingContainer = props =>
+    <SightingContainer
+      currentUser={this.state.currentUser}
+      sightings={this.state.sightings}
+      editedSighting={this.editedSighting}
+      handleSubmit={this.handleSubmit}
+      addSighting={this.addSighting}
+      lat={this.state.lat}
+      lng={this.state.lng}/>
+  login = props =>
+    <Login currentUser={this.state.currentUser} loginClick={this.loginClick} />
 
   render() {
-    // console.log("In App. Props are :", this.state.currentUser)
+    console.log(this.state.sightings)
     return (
 
       <div className="App">
@@ -81,11 +98,11 @@ class App extends Component {
         {this.state.currentUser && this.props.location.pathname !== '/sightings' &&  <Redirect to="/sightings" />}
         <NavBar />
         <h1>Big Foot Finder</h1>
-        <MapComponent lat={this.state.lat} lng={this.state.lng}/>
         <Switch>
           <Route path="/login" component={this.login}/>
           <Route path="/sightings" component={this.sightingContainer}/>
         </Switch>
+        <MapComponent lat={this.state.lat} lng={this.state.lng} zoom={this.state.zoom} latLngGetter={this.latLngGetter}/>
       </div>
     );
   }
