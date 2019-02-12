@@ -34,7 +34,7 @@ class SightingsContainer extends React.Component {
         location: this.state.location,
         description: this.state.description,
         photo: this.state.photo,
-        user_id: this.state.userId,
+        user_id: this.props.currentUser.id,
         lat: this.props.lat,
         lng: this.props.lng,
       })
