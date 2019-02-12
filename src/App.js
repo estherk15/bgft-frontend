@@ -20,9 +20,9 @@ class App extends Component {
     userData: [],
     sightings: [],
     currentUser: null,
-    lat: 40.7075,
-    lng: -74.0113,
-    zoom: 13
+    lat: 39.26061403505392,
+    lng: -97.3828125,
+    zoom: 3
   }
 
   loginClick = (username) => {
@@ -41,7 +41,7 @@ class App extends Component {
       )
   }
 
-  addSighting = (sighting) => {
+  addSighting = (sighting) => { //takes newly created sightings and sets state with updated data.
     this.setState({sightings: [sighting, ...this.state.sightings]})
   }
 

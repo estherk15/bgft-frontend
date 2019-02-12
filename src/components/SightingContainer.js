@@ -7,6 +7,8 @@ class SightingsContainer extends React.Component {
   state = {
     location: '',
     description: '',
+    lat: '',
+    lng: '',
     photo: '',
     userId: '',
   }
@@ -31,7 +33,9 @@ class SightingsContainer extends React.Component {
         location: this.state.location,
         description: this.state.description,
         photo: this.state.photo,
-        user_id: this.state.userId
+        user_id: this.state.userId,
+        lat: this.props.lat,
+        lng: this.props.lng,
       })
     })
     .then(r => r.json())
@@ -40,7 +44,7 @@ class SightingsContainer extends React.Component {
 
 
   render() {
-    // console.log(this.props.location);
+    console.log(this.props.lat)
 
     return (
       <Router>
