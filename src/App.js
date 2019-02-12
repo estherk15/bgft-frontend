@@ -41,6 +41,10 @@ class App extends Component {
       )
   }
 
+  setCurrentUser = user =>{
+    this.setState({currentUser: user})
+  }
+
   addSighting = (sighting) => { //takes newly created sightings and sets state with updated data.
     this.setState({sightings: [sighting, ...this.state.sightings]})
   }
@@ -77,17 +81,8 @@ class App extends Component {
       .then(sightings => this.setState({ sightings }));
   }
 
-  sightingContainer = props =>
-    <SightingContainer
-      currentUser={this.state.currentUser}
-      sightings={this.state.sightings}
-      editedSighting={this.editedSighting}
-      handleSubmit={this.handleSubmit}
-      addSighting={this.addSighting}
-      lat={this.state.lat}
-      lng={this.state.lng}/>
-  login = props =>
-    <Login currentUser={this.state.currentUser} loginClick={this.loginClick} />
+  sightingContainer = props => <SightingContainer currentUser={this.state.currentUser} sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting} lat={this.state.lat} lng={this.state.lng}/>
+  login = props => <Login currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} loginClick={this.loginClick} />
 
   render() {
     console.log(this.state.sightings)
