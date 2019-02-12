@@ -1,13 +1,19 @@
 import React from 'react';
 import {BrowserRouter as Router, Redirect} from 'react-router-dom'
+import CreateUserModal from './CreateUserModal'
 
 class Login extends React.Component {
   state ={
-    enteredUsername: ''
+    enteredUsername: '',
+    modalVisible: false,
   }
 
   loginChange = (event) => {
     this.setState({ enteredUsername: event.target.value})
+  }
+
+  modalToggle = () => {
+    this.setState({modalVisible: !this.state.modalVisible})
   }
 
   render() {
@@ -17,7 +23,9 @@ class Login extends React.Component {
         {this.props.currentUser === null ?
         <div>
           <input type="text" placeholder="Enter Username" onChange={event => this.loginChange(event)}/>
-          <button onClick={() => this.props.loginClick(this.state.enteredUsername)}>Submit</button>
+          <button onClick={() => this.props.loginClick(this.state.enteredUsername)}>Submit</button><br/>
+          <a onClick={() => this.modalToggle()}> make new user</a>
+          < CreateUserModal modalVisible={this.state.modalVisible} setCurrentUser={this.props.setCurrentUser} modalToggle={this.modalToggle}/>
           <hr/>
         </div> : <Redirect to="/sightings" />
         }

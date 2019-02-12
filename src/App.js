@@ -36,6 +36,10 @@ class App extends Component {
       )
   }
 
+  setCurrentUser = user =>{
+    this.setState({currentUser: user})
+  }
+
   addSighting = (sighting) => {
     this.setState({sightings: [sighting, ...this.state.sightings]})
   }
@@ -66,7 +70,7 @@ class App extends Component {
   }
 
   sightingContainer = props => <SightingContainer currentUser={this.state.currentUser} sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting}/>
-  login = props => <Login currentUser={this.state.currentUser} loginClick={this.loginClick} />
+  login = props => <Login currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} loginClick={this.loginClick} />
 
   render() {
     console.log("In App. Props are :", this.state.currentUser)
