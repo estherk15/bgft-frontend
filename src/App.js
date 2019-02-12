@@ -70,6 +70,10 @@ class App extends Component {
     this.setState({lat, lng})
   }
 
+  sightingClick = (sightId) => { //this should open up modal, sightId is taken from MapComponent
+    console.log(sightId)
+  }
+
   componentDidMount() {
     // fetch from local API bfgt-backend
     fetch('http://localhost:3000//api/v1/users')
@@ -81,11 +85,23 @@ class App extends Component {
       .then(sightings => this.setState({ sightings }));
   }
 
-  sightingContainer = props => <SightingContainer currentUser={this.state.currentUser} sightings={this.state.sightings} editedSighting={this.editedSighting} handleSubmit={this.handleSubmit} addSighting={this.addSighting} lat={this.state.lat} lng={this.state.lng}/>
-  login = props => <Login currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} loginClick={this.loginClick} />
+  sightingContainer = props =>
+    <SightingContainer
+      currentUser={this.state.currentUser}
+      sightings={this.state.sightings}
+      editedSighting={this.editedSighting}
+      handleSubmit={this.handleSubmit}
+      addSighting={this.addSighting}
+      lat={this.state.lat}
+      lng={this.state.lng}/>
+  login = props =>
+    <Login
+      currentUser={this.state.currentUser}
+      setCurrentUser={this.setCurrentUser}
+      loginClick={this.loginClick} />
 
   render() {
-    console.log(this.state.currentUser)
+    console.log(this.state.sightings)
     return (
 
       <div className="App">
@@ -97,7 +113,13 @@ class App extends Component {
           <Route path="/login" component={this.login}/>
           <Route path="/sightings" component={this.sightingContainer}/>
         </Switch>
-        <MapComponent lat={this.state.lat} lng={this.state.lng} zoom={this.state.zoom} latLngGetter={this.latLngGetter}/>
+        <MapComponent
+          lat={this.state.lat}
+          lng={this.state.lng}
+          zoom={this.state.zoom}
+          latLngGetter={this.latLngGetter}
+          sightings={this.state.sightings}
+          sightingClick={this.sightingClick}/>
       </div>
     );
   }
