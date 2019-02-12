@@ -11,13 +11,13 @@ class MapComponent extends React.Component {
     const currentPosition = [this.props.lat, this.props.lng]
     let currentLocation = L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png',
-      iconSize: [25, 41], // size of the icon
+      iconSize: [18, 30], // size of the icon
 
     });
 
     let sightedLocation = L.icon({
-      iconUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png',
-      iconSize: [50, 82], // size of the icon
+      iconUrl: 'https://images.vexels.com/media/users/3/151201/isolated/preview/ec82be449048cc1c2e8a06514bb1b356-right-foot-footprint-silhouette-by-vexels.png',
+      iconSize: [30, 30], // size of the icon
     });
 
 
@@ -30,14 +30,12 @@ class MapComponent extends React.Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          })}
-
           <Marker position={currentPosition} icon={currentLocation}></Marker>
 
           {this.props.sightings.map(sighting => {
             const position = [sighting.lat, sighting.lng]
             if(sighting.lat){
-              return <Marker position={position} icon={sightedLocation} onClick={() => this.props.sightingClick(sighting.id)}></Marker>
+              return <Marker key={sighting.id} position={position} icon={sightedLocation} onClick={() => this.props.sightingClick(sighting.id)}></Marker>
             } else {
               return null
             }
@@ -49,11 +47,3 @@ class MapComponent extends React.Component {
 }
 
 export default MapComponent
-
-// {this.props.sightings.map(sighting => {
-//   const position = [sighting.lat, sighting.lng]
-//   if(sighting.lat){
-//     return <Marker position={position} icon={sightedLocation}/>
-//   } else {
-//     return null
-//   }
