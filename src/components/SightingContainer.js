@@ -23,7 +23,6 @@ class SightingsContainer extends React.Component {
   handleSubmit = (event) => { //submit the sighings form, post new information
     event.preventDefault()
 
-
     fetch('http://localhost:3000//api/v1/sightings', {
       method: 'POST',
       headers: {
@@ -43,27 +42,33 @@ class SightingsContainer extends React.Component {
     .then(sighting => this.props.addSighting(sighting))
   }
 
-
   render() {
-    console.log(this.props.currentUser)
+    // console.log(this.props.currentUser)
 
     return (
       <Router>
-        {this.props.user === null ? <Redirect to="/login" /> :
-        <div>
-          <div className="form-card">
-            <form onSubmit={this.handleSubmit}>
-              <input type="text" name="location" placeholder="Enter a Location" onChange={this.handleChange} />
-              <input type="number" name="lat"  value={this.props.lat}/>
-              <input type="number" name="lng" value={this.props.lng}/>
-              <input type="text" name="description" placeholder="Enter a Description" onChange={this.handleChange}/>
-              <input type="text" name="photo" placeholder="Photo Url" onChange={this.handleChange}/>
-              <input type="submit" value="Submit"/>
-            </form>
+        {this.props.user === null ? <Redirect to="/login" />
+        :
+          <div>
+            <div className="form-card">
+              <form onSubmit={this.handleSubmit}>
+                <input type="text" name="location" placeholder="Enter a Location" onChange={this.handleChange} />
+                <input type="number" name="lat"  value={this.props.lat}/>
+                <input type="number" name="lng" value={this.props.lng}/>
+                <input type="text" name="description" placeholder="Enter a Description" onChange={this.handleChange}/>
+                <input type="text" name="photo" placeholder="Photo Url" onChange={this.handleChange}/>
+                <input type="submit" value="Submit"/>
+              </form>
+            </div>
+            {this.props.sighting &&
+              <Sighting
+                key={this.props.sighting.id}
+                currentUser={this.props.currentUser}
+                sighting={this.props.sighting}
+                editedSighting={this.props.editedSighting}
+                cancelClick={this.props.cancelClick}/>}
           </div>
-
-          {this.props.sightings.map(sighting => <Sighting key={sighting.id} currentUser={this.props.currentUser} sighting={sighting} editedSighting={this.props.editedSighting}/>)}
-        </div> }
+        }
       </Router>
 
     )
@@ -71,6 +76,3 @@ class SightingsContainer extends React.Component {
 }
 
 export default SightingsContainer
-
-//add onSubmit handler
-//add onChange hanlder for each form field

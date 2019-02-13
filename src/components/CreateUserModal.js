@@ -32,8 +32,6 @@ class CreateUserModal extends React.Component {
     this.props.setMapBackground()
   }
 
-
-
   render() {
     return(
       <div className={this.props.modalVisible ? "modal display-block": "display-none"}>
