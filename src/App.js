@@ -78,11 +78,19 @@ class App extends Component {
   sightingClick = (sightingId) => { //this should open up modal, sightId is taken from MapComponent, onclick, this will setState to the sightId
     this.setState({
       selectedSightingId: sightingId,
+      mapBackground: true
     })
   }
 
   renderSighting = () => {//return the Sighting object clicked on the map
     return this.state.sightings.find(sighting => sighting.id === this.state.selectedSightingId)
+  }
+
+  cancelClick = () => { //Click out of the sighting modal
+    this.setState({
+      selectedSightingId: null,
+      mapBackground: false,
+    })
   }
 
   componentDidMount() {
@@ -107,6 +115,7 @@ class App extends Component {
       lng={this.state.lng}
       sighting={this.renderSighting()}
       setMapBackground={this.setMapBackground}
+      cancelClick={this.cancelClick}
       />
   login = props =>
     <Login

@@ -11,11 +11,6 @@ class Sighting extends React.Component {
     this.setState({commentsDisplay: !this.state.commentsDisplay})
   }
 
-  // modalToggle = () => {
-  //   this.setState({modalVisible: !this.state.modalVisible})
-  //   this.props.setMapBackground()
-  // }
-
   render() {
     // console.log('sighting', this.props.currentUser)
     return (
@@ -28,11 +23,16 @@ class Sighting extends React.Component {
           <div>
             Description: {this.props.sighting.description}
           </div>
-        </div><br/>
         <button onClick={() => this.pageViewtoggle()}> bigger View </button>
+        <button onClick={this.props.cancelClick}> Cancel </button>
         {this.state.commentsDisplay ?
-          <CommentsContainer comments={this.props.sighting.comments} sightingId={this.props.sighting.id} editedSighting={this.props.editedSighting} currentUser={this.props.currentUser}/>:
+          <CommentsContainer
+            comments={this.props.sighting.comments}
+            sightingId={this.props.sighting.id}
+            editedSighting={this.props.editedSighting}
+            currentUser={this.props.currentUser}/>:
         <div></div>}
+        </div>
       </div>
     )
   }

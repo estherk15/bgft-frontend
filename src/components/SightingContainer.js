@@ -59,7 +59,13 @@ class SightingsContainer extends React.Component {
               <input type="submit" value="Submit"/>
             </form>
           </div>
-          {this.props.sighting && <Sighting key={this.props.sighting.id} currentUser={this.props.currentUser} sighting={this.props.sighting} editedSighting={this.props.editedSighting}/>}
+          {this.props.sighting &&
+            <Sighting
+              key={this.props.sighting.id}
+              currentUser={this.props.currentUser}
+              sighting={this.props.sighting}
+              editedSighting={this.props.editedSighting}
+              cancelClick={this.props.cancelClick}/>}
         </div> }
       </Router>
 
