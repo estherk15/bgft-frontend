@@ -23,9 +23,17 @@ a {
   cursor: pointer;
 }
 
+img {
+  border-radius: 25px;
+  height: auto;
+  width: auto;
+}
+
 .form-card {
   background-color: #eec76b;
   padding-top: 3vmin;
+
+
   padding-bottom: 3vmin;
   padding-left: 2vmin;
   margin-right: 5vmin;
@@ -64,15 +72,40 @@ a {
     z-index: -1;
 }
 
+.location {
+  float: left;
+}
+
+.comments {
+  float: right;
+  width: auto;
+  margin-right: -1vmin;
+}
+
+.comment {
+  border-bottom: 2px dotted;
+  padding-bottom: 3vmin;
+  padding-top: 1vmin;
+  width: 49vmin;
+}
+
+.comment-form {
+  width: auto;
+}
+
 .map {
   border-radius: 15px;
 }
 
 .newuser-form {
+  display: flex;
+  justify-content: space-around;
   border: 1vmin blue;
   padding: 10vmin;
   margin: 20vmin;
   border-radius: 25px;
+  height: 50vmin;
   background-color: white;
   z-index: 4;
+  overflow: auto;
 }
