@@ -9,7 +9,7 @@ class SightingsContainer extends React.Component {
     description: '',
     lat: '',
     lng: '',
-    photo: '',
+    photo: null,
     userId: '',
   }
 
@@ -23,23 +23,45 @@ class SightingsContainer extends React.Component {
   handleSubmit = (event) => { //submit the sighings form, post new information
     event.preventDefault()
 
-    fetch('http://localhost:3000//api/v1/sightings', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        location: this.state.location,
-        description: this.state.description,
-        photo: this.state.photo,
-        user_id: this.props.currentUser.id,
-        lat: this.props.lat,
-        lng: this.props.lng,
+    if(this.state.photo === null) {
+      fetch('http://localhost:3000//api/v1/sightings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          location: this.state.location,
+          description: this.state.description,
+          user_id: this.props.currentUser.id,
+          lat: this.props.lat,
+          lng: this.props.lng,
+        })
       })
-    })
-    .then(r => r.json())
-    .then(sighting => this.props.addSighting(sighting))
+      .then(r => r.json())
+      .then(sighting => this.props.addSighting(sighting))
+
+    } else {
+
+      fetch('http://localhost:3000//api/v1/sightings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          location: this.state.location,
+          description: this.state.description,
+          photo: this.state.photo,
+          user_id: this.props.currentUser.id,
+          lat: this.props.lat,
+          lng: this.props.lng,
+        })
+      })
+      .then(r => r.json())
+      .then(sighting => this.props.addSighting(sighting))
+    }
+
   }
 
   render() {

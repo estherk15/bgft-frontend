@@ -41,25 +41,25 @@ class Comments extends React.Component {
 
     return (
       <div>
-      {this.state.formLayout ?
-        <form onSubmit={(event)=> this.commentEditor(event)}>
-          <input type="text" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/>
-          <input type="text" value={this.state.photo} onChange={event => this.setState({photo: event.target.value})}/>
-          <input onClick={() => this.setState({formLayout: false})}type="submit" value="make the changes"/>
-        </form>
-      :
-      <div>
-        {this.state.body}
-        {console.log("---> currentUser is :", this.props.currentUser)}
-        {(this.props.currentUser.id === this.props.comment.user.id) ?
-       <div>
-          <button onClick={() => this.setState({formLayout: true})}>Edit Your Comment</button>
-          <button onClick={() => this.deleteComment()}> Delete </button>
-        </div>
-        :
-        <div></div>}
-        </div>
-    }
+        {this.state.formLayout ?
+          <form onSubmit={(event)=> this.commentEditor(event)}>
+            <input  type="text" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/>
+            <input type="text" value={this.state.photo} onChange={event => this.setState({photo: event.target.value})}/>
+            <input onClick={() => this.setState({formLayout: false})}type="submit" value="make the changes"/>
+          </form>
+          :
+          <div className="comment">
+            {this.state.body}
+            {(this.props.currentUser.id === this.props.comment.user.id) ?
+            <div>
+                <button onClick={() => this.setState({formLayout: true})}>Edit Your Comment</button>
+                <button onClick={() => this.deleteComment()}> Delete </button>
+            </div>
+            :
+              null
+            }
+          </div>
+        }
       </div>
     )
   }
