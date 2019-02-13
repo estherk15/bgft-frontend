@@ -19,6 +19,10 @@ input {
   margin: 0.5vmin;
 }
 
+a {
+  cursor: pointer;
+}
+
 .form-card {
   background-color: #eec76b;
   padding-top: 3vmin;
@@ -36,8 +40,6 @@ input {
 .display-none {
   display: none;
 }
-
-
 
 .modal {
   position: fixed;
@@ -65,8 +67,6 @@ input {
 .map {
   border-radius: 15px;
 }
-
-
 
 .newuser-form {
   border: 1vmin blue;

@@ -11,6 +11,11 @@ class Sighting extends React.Component {
     this.setState({commentsDisplay: !this.state.commentsDisplay})
   }
 
+  // modalToggle = () => {
+  //   this.setState({modalVisible: !this.state.modalVisible})
+  //   this.props.setMapBackground()
+  // }
+
   render() {
     // console.log('sighting', this.props.currentUser)
     return (

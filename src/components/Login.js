@@ -22,13 +22,13 @@ class Login extends React.Component {
     return(
       <Router>
         {this.props.currentUser === null ?
-        <div>
-          <input type="text" placeholder="Enter Username" onChange={event => this.loginChange(event)}/>
-          <button onClick={() => this.props.loginClick(this.state.enteredUsername)}>Submit</button><br/>
-          <a onClick={() => this.modalToggle()}> make new user</a>
-          < CreateUserModal setMapBackground={this.props.setMapBackground} modalVisible={this.state.modalVisible} setCurrentUser={this.props.setCurrentUser} modalToggle={this.modalToggle}/>
-          <hr/>
-        </div> : <Redirect to="/sightings" />
+          <div>
+            <input type="text" placeholder="Enter Username" onChange={event => this.loginChange(event)}/>
+            <button onClick={() => this.props.loginClick(this.state.enteredUsername)}>Submit</button><br/>
+            <a onClick={() => this.modalToggle()}> make new user</a>
+            <CreateUserModal setMapBackground={this.props.setMapBackground} modalVisible={this.state.modalVisible} setCurrentUser={this.props.setCurrentUser} modalToggle={this.modalToggle}/>
+            <hr/>
+          </div> : <Redirect to="/sightings" />
         }
       </Router>
     )

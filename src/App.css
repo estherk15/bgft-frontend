@@ -24,8 +24,9 @@
 }
 
 .map {
-  height: 300px;
-  width: 400px;
+  height: 400px;
+  width: 700px;
+  margin: 25px;
   margin-left: auto;
   margin-right: auto;
 }

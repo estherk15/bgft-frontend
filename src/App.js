@@ -10,7 +10,6 @@ import {
   Redirect
 } from "react-router-dom";
 
-// import NavBar from './components/NavBar'
 import SightingContainer from './components/SightingContainer'
 import Login from './components/Login'
 import MapComponent from './components/MapComponent'
@@ -22,12 +21,12 @@ class App extends Component {
     currentUser: null,
     lat: 39.26061403505392,
     lng: -97.3828125,
-    zoom: 3,
+    zoom: 4,
     mapBackground: false,
     selectedSightingId: '',
   }
 
-  setMapBackground = () => {
+  setMapBackground = () => { //
     this.setState({mapBackground: !this.state.mapBackground})
   }
 
@@ -43,16 +42,16 @@ class App extends Component {
       })
     })
       .then(response => response.json())
-      .then(data => this.setState({currentUser: data})
+      .then(data => this.setState({ currentUser: data })
       )
   }
 
-  setCurrentUser = user =>{
-    this.setState({currentUser: user})
+  setCurrentUser = user =>{ //when you create a new user, it sets state to new user
+    this.setState({ currentUser: user })
   }
 
   addSighting = (sighting) => { //takes newly created sightings and sets state with updated data.
-    this.setState({sightings: [sighting, ...this.state.sightings]})
+    this.setState({ sightings: [sighting, ...this.state.sightings] })
   }
 
   editedSighting = editedSight => {
@@ -66,7 +65,7 @@ class App extends Component {
         return sighting
       }
     })
-    this.setState({sightings: newSightingList})
+    this.setState({ sightings: newSightingList })
   }
 
   latLngGetter = (e) => {//e.latlng grabs the lat and long of where you click mouse. Sets state to clicked lat/lng
@@ -77,10 +76,12 @@ class App extends Component {
   }
 
   sightingClick = (sightingId) => { //this should open up modal, sightId is taken from MapComponent, onclick, this will setState to the sightId
-    this.setState({ selectedSightingId: sightingId })
+    this.setState({
+      selectedSightingId: sightingId,
+    })
   }
 
-  renderSighting = () => {
+  renderSighting = () => {//return the Sighting object clicked on the map
     return this.state.sightings.find(sighting => sighting.id === this.state.selectedSightingId)
   }
 
@@ -95,10 +96,10 @@ class App extends Component {
       .then(sightings => this.setState({ sightings }));
   }
 
+//Sighting and Login Components
   sightingContainer = props =>
     <SightingContainer
       currentUser={this.state.currentUser}
-
       editedSighting={this.editedSighting}
       handleSubmit={this.handleSubmit}
       addSighting={this.addSighting}
@@ -117,7 +118,6 @@ class App extends Component {
   render() {
 
     return (
-
       <div className="App">
         {(!this.state.currentUser && this.props.location.pathname !== '/login') && <Redirect to="/login" />}
         {this.state.currentUser && this.props.location.pathname !== '/sightings' &&  <Redirect to="/sightings" />}
@@ -130,11 +130,11 @@ class App extends Component {
         <MapComponent
           lat={this.state.lat}
           lng={this.state.lng}
-          zoom={this.state.zoom}
           latLngGetter={this.latLngGetter}
           sightings={this.state.sightings}
           sightingClick={this.sightingClick}
-          mapBackground={this.state.mapBackground}/>
+          mapBackground={this.state.mapBackground}
+          zoom={this.state.zoom}/>
 
       </div>
     );
@@ -143,4 +143,3 @@ class App extends Component {
 
 
 export default App;
-// sightings={this.state.sightings} (taken from Sightings Container)
