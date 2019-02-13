@@ -23,6 +23,49 @@ a {
   cursor: pointer;
 }
 
+button {
+  outline: none;
+  height: 5vmin;
+  width: 12vmin;
+  border-radius: 4px;
+  background-color: #6B2B06;
+  color: white;
+  border: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: 0.5vmin;
+
+}
+
+button:active {
+  color: #6B2B06;
+  background-color: white;
+}
+
+button:hover {
+  background-color: #BEB7A4;
+}
+
+input[type=submit]:active {
+  color: #6B2B06;
+  background-color: white;
+}
+
+input[type=submit]:hover{
+  background-color: #BEB7A4;
+}
+
+input[type=submit] {
+  outline: none;
+  height: 5vmin;
+  width: 12vmin;
+  border-radius: 4px;
+  background-color: #6B2B06;
+  color: white;
+  border: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: 1vmin;
+}
+
 img {
   border-radius: 25px;
   height: auto;
@@ -32,8 +75,6 @@ img {
 .form-card {
   background-color: #eec76b;
   padding-top: 3vmin;
-
-
   padding-bottom: 3vmin;
   padding-left: 2vmin;
   margin-right: 5vmin;
@@ -41,9 +82,15 @@ img {
   border-radius: 25px;
 }
 
+.two-buttons{
+  display: inline-flex;
+}
+
 .display-block {
   display: block;
 }
+
+
 
 .display-none {
   display: none;
@@ -105,7 +152,8 @@ img {
   margin: 20vmin;
   border-radius: 25px;
   height: 50vmin;
-  background-color: white;
+  background-color: #6E7A61;
   z-index: 4;
   overflow: auto;
+  color: white;
 }
