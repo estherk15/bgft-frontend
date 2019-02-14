@@ -49,7 +49,6 @@ class CommentsContainer extends React.Component {
     })
   }
 
-
   render() {
     console.log("comments container", this.props.currentUser)
     return (

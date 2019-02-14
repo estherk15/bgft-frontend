@@ -33,7 +33,6 @@ button {
   border: none;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   margin: 0.5vmin;
-
 }
 
 button:active {
@@ -89,8 +88,6 @@ img {
 .display-block {
   display: block;
 }
-
-
 
 .display-none {
   display: none;

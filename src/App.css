@@ -30,3 +30,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+h1 {
+  font-family: 'Hanalei Fill', cursive;
+  font-size: 400%;
+}
