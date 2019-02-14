@@ -52,8 +52,11 @@ class Comments extends React.Component {
             {this.state.body}
             {(this.props.currentUser.id === this.props.comment.user.id) ?
             <div>
+              <div className="two-buttons">
                 <button onClick={() => this.setState({formLayout: true})}>Edit Your Comment</button>
+
                 <button onClick={() => this.deleteComment()}> Delete </button>
+              </div>
             </div>
             :
               null

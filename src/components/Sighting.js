@@ -17,6 +17,7 @@ class Sighting extends React.Component {
 
       <div type='card' className="modal display-block">
         <div className="newuser-form card">
+
           <div className="location">
             sighted at: {this.props.sighting.location}
             <div className="photo">
@@ -28,8 +29,10 @@ class Sighting extends React.Component {
             <div className="description">
               Description: {this.props.sighting.description}
             </div>
+            <div className="two-buttons">
             <button onClick={() => this.pageViewtoggle()}> bigger View </button>
             <button onClick={this.props.cancelClick}> Cancel </button>
+            </div>
             {this.state.commentsDisplay ?
               <CommentsContainer
                 comments={this.props.sighting.comments}

@@ -36,6 +36,7 @@ class CreateUserModal extends React.Component {
     return(
       <div className={this.props.modalVisible ? "modal display-block": "display-none"}>
         <div className="newuser-form card">
+          <div>
           <form onSubmit={event => this.makeUser(event)}>
             <input onChange={event => this.typingHandler(event)} type="text" className="username" placeholder="Your name"/><br />
             <input onChange={event => this.typingHandler(event)} type="text" className="bio" placeholder="bio" /> <br />
@@ -45,6 +46,7 @@ class CreateUserModal extends React.Component {
           <button type="button" onClick={this.props.modalToggle}>
             Close New User Form
           </button>
+          </div>
         </div>
       </div>
     )

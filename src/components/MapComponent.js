@@ -3,6 +3,8 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import footprint from './footprint.png'
 
+// modal component based on a tutorial from alligator.io https://alligator.io/react/modal-component/
+
 class MapComponent extends React.Component {
 
   render() {
