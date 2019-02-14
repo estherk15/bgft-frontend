@@ -61,7 +61,7 @@ class SightingsContainer extends React.Component {
       .then(r => r.json())
       .then(sighting => this.props.addSighting(sighting))
     }
-
+    event.target.reset()
   }
 
   render() {
