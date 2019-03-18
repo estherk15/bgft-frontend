@@ -19,10 +19,6 @@ input {
   margin: 0.5vmin;
 }
 
-a {
-  cursor: pointer;
-}
-
 button {
   outline: none;
   height: 5vmin;
