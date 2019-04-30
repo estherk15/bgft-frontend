@@ -16,9 +16,9 @@ Keep track of your BigFoot sightings! To begin, fork this repository and clone i
 - [postgreSQL](https://www.postgresql.org/) : Database that holds all BigFoot Finder data a user persists.
 - [React-Leaflet](https://react-leaflet.js.org/) : Allows the user to pin the location of their sighting to a map, making sighting experience visually appealing.
 
-## Structure
+<!-- ## Structure
 
-The `index.html` file hold the structure of the app. An `src` folder contains the `index.js` file which holds the JavaScript and DOM manipulation logic.
+The `index.html` file hold the structure of the app. An `src` folder contains the `index.js` file which holds the JavaScript and DOM manipulation logic. -->
 
 ## Using the Application
 
