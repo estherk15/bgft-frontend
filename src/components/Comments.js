@@ -36,9 +36,7 @@ class Comments extends React.Component {
   }
 
 
-
   render() {
-
     return (
       <div>
         {this.state.formLayout ?
@@ -66,6 +64,5 @@ class Comments extends React.Component {
       </div>
     )
   }
-
 }
 export default Comments
