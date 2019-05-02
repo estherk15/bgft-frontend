@@ -1,6 +1,6 @@
 # BigFoot Finder: The Front End
 
-[Demo Video](placeholder for the demo video)
+[Demo](https://youtu.be/2Ww5gw-ZGrs)
 
 This JavaScript Single Page Application was built to help BigFoot enthusiasts keep track of all their BigFoot sightings as well as comment on other sightings to corroborate. Through the incorporation of Leaflet Library, enthusiasts are able to interact with a visual map of the United States and click on the location of their sighting.
 
